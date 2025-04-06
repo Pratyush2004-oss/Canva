@@ -1,13 +1,16 @@
 "use client";
 
+import { UserDetailContext } from "@/context/UserDetailContext";
 import { api } from "@/convex/_generated/api";
+import { Doc } from "@/convex/_generated/dataModel";
 import { useUser } from "@stackframe/stack";
 import { useMutation } from "convex/react";
-import React, { useEffect } from "react";
-import Loading from "../loading";
+import React, { useEffect, useState } from "react";
 
+type UserType = Doc<"users">;
 const Provider = ({ children }: { children: React.ReactNode }) => {
   const user = useUser();
+  const [userDetail, setuserDetail] = useState<UserType>();
   const createNewUserMutation = useMutation(api.users.CreateNewUser);
   const createUser = async () => {
     const data = {
@@ -15,13 +18,21 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
       email: user?.primaryEmail || "",
       picture: user?.profileImageUrl || "",
     };
-    useEffect(() => {
-      user && createUser();
-    }, [user]);
     const result = await createNewUserMutation({ ...data });
-    console.log(result)
+    if (typeof result === "object" && "_id" in result) {
+      setuserDetail(result as UserType);
+    }
   };
-  return <div>{children}</div>;
+  useEffect(() => {
+    user && createUser();
+  }, [user]);
+  return (
+    <div>
+      <UserDetailContext.Provider value={{ userDetail, setuserDetail }}>
+        {children}
+      </UserDetailContext.Provider>
+    </div>
+  );
 };
 
 export default Provider;
