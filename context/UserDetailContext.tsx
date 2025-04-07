@@ -1,3 +1,4 @@
+import { Doc } from "@/convex/_generated/dataModel";
 import { createContext } from "react";
-
-export const UserDetailContext = createContext({});
+type UserType = Doc<"users">;
+export const UserDetailContext = createContext({} as { userDetail: UserType; setuserDetail: Function });

@@ -28,7 +28,9 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
   }, [user]);
   return (
     <div>
-      <UserDetailContext.Provider value={{ userDetail, setuserDetail }}>
+      <UserDetailContext.Provider
+        value={{ userDetail: userDetail as UserType, setuserDetail }}
+      >
         {children}
       </UserDetailContext.Provider>
     </div>

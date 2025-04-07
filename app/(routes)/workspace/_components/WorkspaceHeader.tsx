@@ -4,7 +4,7 @@ import React from "react";
 
 const WorkspaceHeader = () => {
   return (
-    <div className="p-2 px-5 flex items-center justify-between shadow-sm">
+    <div className="p-2 px-5 flex items-center justify-between shadow-sm sticky top-0 z-20 bg-white">
       <Image
         src={"/logo.png"}
         alt="logo"

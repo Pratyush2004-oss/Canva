@@ -1,8 +1,30 @@
+"use client";
+import { UserDetailContext } from "@/context/UserDetailContext";
+import { api } from "@/convex/_generated/api";
 import { canvasSizeOptions } from "@/services/Options";
+import { CanvasOptionTypes } from "@/types/types";
+import { useMutation } from "convex/react";
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
+import { toast } from "sonner";
 
 const IntroOptions = () => {
+  const { userDetail } = useContext(UserDetailContext);
+  const createDesignRecord = useMutation(api.designs.CreateNewDesign);
+
+  /*
+   * Used to create new design and Save to the dateabase
+   */
+  const OnCanvasOptionSelect = async (option: CanvasOptionTypes) => {
+    toast("Loading...");
+    const result = await createDesignRecord({
+      name: option.name,
+      width: option.width,
+      height: option.height,
+      uid: userDetail?._id,
+    });
+    console.log(result);
+  };
   return (
     <>
       <div className="relative">
@@ -22,15 +44,18 @@ const IntroOptions = () => {
           <div
             key={idx}
             className="flex flex-col items-center justify-end cursor-pointer"
+            onClick={() => OnCanvasOptionSelect(option)}
           >
             <Image
               src={option.icon}
               alt={option.name}
               width={40}
               height={40}
-              className="w-[40px] h-[40px]"
+              className="hover:scale-105 transition-all duration-300"
             />
-            <span className="text-sm mt-2 text-center">{option.name}</span>
+            <span className="text-xs mt-2 text-center font-medium text-wrap line-clamp-1">
+              {option.name}
+            </span>
           </div>
         ))}
       </div>
