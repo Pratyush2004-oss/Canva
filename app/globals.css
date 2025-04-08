@@ -3,6 +3,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+*{
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

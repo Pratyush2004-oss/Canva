@@ -6,6 +6,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import DesignSidebar from "../_components/DesignSidebar";
+import CanvasEditor from "../_components/CanvasEditor";
 
 const DesignPage = () => {
   const { designId } = useParams();
@@ -17,8 +18,9 @@ const DesignPage = () => {
   return DesignInfo && (
     <div className="">
       <DesignHeader DesignInfo={DesignInfo} />
-      <div>
+      <div className="flex">
         <DesignSidebar />
+        <CanvasEditor DesignInfo={DesignInfo} />
       </div>
     </div>
   );
