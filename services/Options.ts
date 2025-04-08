@@ -1,4 +1,4 @@
-import { Folder, Home, LayoutDashboard, WalletCardsIcon } from "lucide-react";
+import { Component, Folder, Home, Image, LayoutDashboard, LayoutTemplate, Settings, ShapesIcon, Sparkle, Type, WalletCardsIcon } from "lucide-react";
 export const WorkspaceMenu = [
   {
     name: "Home",
@@ -90,3 +90,47 @@ export const canvasSizeOptions = [
     icon: "/pinterest.png",
   },
 ];
+
+export const sideBarMenu = [
+  {
+    name: 'Templates',
+    desc: 'Select Prebuild Template',
+    icon: LayoutTemplate,
+    // component: <TemplatesList />
+},
+{
+    name: 'Elements',
+    desc: 'Select Shapes and Stickers',
+    icon: ShapesIcon,
+    // component: <Elements />
+},
+{
+    name: 'Images',
+    desc: 'Add Image or Upload your own',
+    icon: Image,
+    // component: <AddImageSetting />
+},
+{
+    name: 'Text',
+    desc: 'Add Text and Heading',
+    icon: Type,
+    // component: <TextSettings />
+},
+{
+    name: 'AI',
+    desc: 'More AI Feature to enhance your design',
+    icon: Sparkle,
+    // component: <AiTransformSetting />
+},
+{
+    name: 'Background',
+    desc: 'Change Canvas Background',
+    icon: Component,
+    // component: <BackrgoundSetting />
+},
+{
+    name: 'Settings',
+    desc: 'Update Canvas Size and background',
+    icon: Settings
+}
+]

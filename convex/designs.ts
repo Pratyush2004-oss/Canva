@@ -1,6 +1,7 @@
 import { v } from "convex/values";
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 
+// creating the new data
 export const CreateNewDesign = mutation({
   args: {
     name: v.string(),
@@ -19,3 +20,14 @@ export const CreateNewDesign = mutation({
     return result;
   },
 });
+
+// getting the design data from the convex by design id
+export const GetDesign = query({
+  args:{
+    id: v.id("designs")
+  },
+  handler: async (ctx, args) => {
+    const result = await ctx.db.get(args.id);
+    return result;
+  }
+})

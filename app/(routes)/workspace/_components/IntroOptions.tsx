@@ -5,12 +5,14 @@ import { canvasSizeOptions } from "@/services/Options";
 import { CanvasOptionTypes } from "@/types/types";
 import { useMutation } from "convex/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useContext } from "react";
 import { toast } from "sonner";
 
 const IntroOptions = () => {
   const { userDetail } = useContext(UserDetailContext);
   const createDesignRecord = useMutation(api.designs.CreateNewDesign);
+  const router = useRouter();
 
   /*
    * Used to create new design and Save to the dateabase
@@ -23,7 +25,7 @@ const IntroOptions = () => {
       height: option.height,
       uid: userDetail?._id,
     });
-    console.log(result);
+    router.push(`/design/${result}`);
   };
   return (
     <>

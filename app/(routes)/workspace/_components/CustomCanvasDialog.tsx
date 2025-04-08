@@ -13,6 +13,7 @@ import { UserDetailContext } from "@/context/UserDetailContext";
 import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { useContext, useState } from "react";
 import { toast } from "sonner";
 
@@ -22,6 +23,7 @@ const CustomCanvasDialog = ({ children }: { children: React.ReactElement }) => {
   const [width, setwidth] = useState<number>(0);
   const [loading, setloading] = useState<boolean>(false);
   const { userDetail } = useContext(UserDetailContext);
+  const router = useRouter();
 
   const createDesignRecord = useMutation(api.designs.CreateNewDesign);
   const onCreate = async () => {
@@ -35,10 +37,10 @@ const CustomCanvasDialog = ({ children }: { children: React.ReactElement }) => {
         height: height,
         uid: userDetail?._id,
       });
-      console.log(result);
       setname("");
       setheight(0);
       setwidth(0);
+      router.push(`/design/${result}`);
     } catch (error) {
       console.log(error);
       toast.error("Error in creating design");
@@ -69,7 +71,7 @@ const CustomCanvasDialog = ({ children }: { children: React.ReactElement }) => {
                     <label>Height</label>
                     <Input
                       onChange={(e) => setheight(parseInt(e.target.value))}
-                      value={height}
+                      value={height || 0}
                       accept="number"
                       className="mt-1 "
                       placeholder={"500"}
@@ -80,7 +82,7 @@ const CustomCanvasDialog = ({ children }: { children: React.ReactElement }) => {
                     <label>Width</label>
                     <Input
                       min={0}
-                      value={width}
+                      value={width || 0}
                       onChange={(e) => setwidth(parseInt(e.target.value))}
                       accept="number"
                       className="mt-1"
