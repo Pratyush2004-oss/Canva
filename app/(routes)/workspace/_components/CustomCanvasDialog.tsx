@@ -25,6 +25,8 @@ const CustomCanvasDialog = ({ children }: { children: React.ReactElement }) => {
 
   const createDesignRecord = useMutation(api.designs.CreateNewDesign);
   const onCreate = async () => {
+    if (!userDetail?._id) return;
+    if (!name || !height || !width) return toast.error("Fill all the fields");
     setloading(true);
     try {
       const result = await createDesignRecord({
@@ -68,7 +70,7 @@ const CustomCanvasDialog = ({ children }: { children: React.ReactElement }) => {
                     <Input
                       onChange={(e) => setheight(parseInt(e.target.value))}
                       value={height}
-                      type="number"
+                      accept="number"
                       className="mt-1 "
                       placeholder={"500"}
                       min={0}
@@ -80,7 +82,7 @@ const CustomCanvasDialog = ({ children }: { children: React.ReactElement }) => {
                       min={0}
                       value={width}
                       onChange={(e) => setwidth(parseInt(e.target.value))}
-                      type="number"
+                      accept="number"
                       className="mt-1"
                       placeholder={"500"}
                     />
@@ -93,7 +95,7 @@ const CustomCanvasDialog = ({ children }: { children: React.ReactElement }) => {
                   onClick={onCreate}
                   disabled={loading}
                 >
-                  {loading ? <Loader2 /> : "Create"}
+                  {loading ? <Loader2 className="animate-spin" /> : "Create"}
                 </Button>
               </div>
             </div>
