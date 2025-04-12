@@ -8,6 +8,14 @@
   scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
 }
 
+.chrome-picker {
+  width: auto !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

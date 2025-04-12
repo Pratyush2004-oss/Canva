@@ -1,11 +1,13 @@
 "use client";
 import { Doc } from "@/convex/_generated/dataModel";
 import { Canvas } from "fabric";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { useCanvasHook } from "../[designId]/page";
 
 const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
   const canvasRef = useRef(null);
   const [canvas, setcanvas] = useState<Canvas | null>(null);
+  const { canvasEditor, setcanvasEditor } = useCanvasHook();
 
   useEffect(() => {
     if (canvasRef.current && DesignInfo) {
@@ -23,6 +25,7 @@ const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
       });
       initCanvas.renderAll();
       setcanvas(initCanvas);
+      setcanvasEditor(initCanvas);
 
       return () => {
         initCanvas.dispose();
