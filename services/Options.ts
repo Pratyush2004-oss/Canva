@@ -160,3 +160,22 @@ export const sideBarMenu = [
     component: null,
   },
 ];
+
+export const ShapeList = [
+  {
+    name: 'Circle',
+    icon: '/moon.png'
+  },
+  {
+    name: 'Square',
+    icon: '/square.png'
+  },
+  {
+    name: "Triangle",
+    icon: '/triangle.png'
+  },
+  {
+    name: "Line",
+    icon: '/line.png'
+  }
+]

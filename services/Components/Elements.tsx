@@ -1,8 +1,11 @@
 import React from 'react'
+import Shapes from '../Sharable/Shapes'
 
 const Elements = () => {
   return (
-    <div>Elements</div>
+    <div>
+      <Shapes/>
+    </div>
   )
 }
 
