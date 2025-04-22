@@ -15,6 +15,7 @@ const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
         width: DesignInfo?.width / 1.5,
         height: DesignInfo?.height / 1.5,
         backgroundColor: "#fff",
+        preserveObjectStacking: true,
       });
       //   set high resolution canvas
       const scaleFactor = window.devicePixelRatio || 1;
@@ -32,6 +33,25 @@ const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
       };
     }
   }, [DesignInfo]);
+
+  // Used to delete the selected element/Oject
+  useEffect(()=>{
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if(e.key === 'Delete' || e.key === 'Backspace'){
+        if(canvasEditor){
+          const activeObject = canvasEditor.getActiveObject();
+          if(activeObject) {
+            canvasEditor.remove(activeObject);
+            canvasEditor.renderAll();
+          }
+        }
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+  },[canvasEditor])
   return (
     DesignInfo && (
       <div className="bg-secondary h-screen w-full flex items-center flex-col justify-center my-auto">
