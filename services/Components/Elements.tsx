@@ -5,7 +5,6 @@ const Elements = () => {
   return (
     <div>
       <Shapes/>
-      
     </div>
   )
 }
