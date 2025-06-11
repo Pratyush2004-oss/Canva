@@ -8,6 +8,7 @@ export interface CanvasOptionTypes {
   name: string;
 }
 
+
 export interface DesignSidebarType {
   name: string;
   desc: string;
