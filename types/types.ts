@@ -14,5 +14,5 @@ export interface DesignSidebarType {
   icon: React.ForwardRefExoticComponent<
     Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
   >;
-  component?: any;
+  component?: JSX.Element;
 }
