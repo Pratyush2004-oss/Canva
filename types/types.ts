@@ -16,4 +16,3 @@ export interface DesignSidebarType {
   >;
   component?: JSX.Element;
 }
-
