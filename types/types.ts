@@ -1,5 +1,4 @@
 import { LucideProps } from "lucide-react";
-import { JSX } from "react";
 
 export interface CanvasOptionTypes {
   width: number;
@@ -14,5 +13,5 @@ export interface DesignSidebarType {
   icon: React.ForwardRefExoticComponent<
     Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
   >;
-  component?: JSX.Element;
+  component?: any;
 }

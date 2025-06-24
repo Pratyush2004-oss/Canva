@@ -1,7 +1,8 @@
 "use client";
 import { Doc } from "@/convex/_generated/dataModel";
+import TopNavBar from "@/services/Components/TopNavBar";
 import { Canvas } from "fabric";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCanvasHook } from "../[designId]/page";
 
 const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
@@ -35,27 +36,30 @@ const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
   }, [DesignInfo]);
 
   // Used to delete the selected element/Oject
-  useEffect(()=>{
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if(e.key === 'Delete' || e.key === 'Backspace'){
-        if(canvasEditor){
+      if (e.key === "Delete" || e.key === "Backspace") {
+        if (canvasEditor) {
           const activeObject = canvasEditor.getActiveObject();
-          if(activeObject) {
+          if (activeObject) {
             canvasEditor.remove(activeObject);
             canvasEditor.renderAll();
           }
         }
       }
-    }
-    document.addEventListener('keydown', handleKeyDown);
+    };
+    document.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    }
-  },[canvasEditor])
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [canvasEditor]);
   return (
     DesignInfo && (
-      <div className="bg-secondary h-screen w-full flex items-center flex-col justify-center my-auto">
-        <canvas id="canvas" ref={canvasRef} />
+      <div className="bg-secondary h-screen w-full">
+        <TopNavBar />
+        <div className="mt-10 flex items-center flex-col justify-center my-auto">
+          <canvas id="canvas" ref={canvasRef} />
+        </div>
       </div>
     )
   );
