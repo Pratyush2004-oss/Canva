@@ -1,29 +1,50 @@
 import React, { useEffect, useState } from "react";
 import ShapesSetting from "../Sharable/ShapesSetting";
 import { useCanvasHook } from "@/app/(routes)/design/[designId]/page";
+import TextSettingsNavbar from "../Sharable/TextSettingsNavbar";
 
 function TopNavBar() {
   const { canvasEditor } = useCanvasHook();
-  const [showShapeSetting, setshowShapeSetting] = useState(false)
+  const [showShapeSetting, setshowShapeSetting] = useState(false);
+  const [enableTextSettings, setEnableTextSettings] = useState(false);
 
   useEffect(() => {
-    const activeObject = canvasEditor?.getActiveObject();
-
   }, [canvasEditor]);
-  if(canvasEditor) {
-    canvasEditor.on('selection:created', function(e: any) {
+
+  if (canvasEditor) {
+    canvasEditor.on("selection:created", function (e: any) {
       const activeObject = canvasEditor.getActiveObject();
-      if (activeObject && e.selected[0].cornerStyle == 'rect') {
-        setshowShapeSetting(true);
+      if (activeObject) {
+        if (!activeObject.text) {
+          setshowShapeSetting(true);
+          setEnableTextSettings(false);
+        }
+        if (activeObject.text) {
+          setEnableTextSettings(true);
+          setshowShapeSetting(false);
+        }
       }
-    })
-    canvasEditor.on('selection:cleared', function() {
+    });
+    canvasEditor.on("selection:updated", function () {
+      const activeObject = canvasEditor.getActiveObject();
+        if (!activeObject.text) {
+          setshowShapeSetting(true);
+          setEnableTextSettings(false);
+        }
+        if (activeObject.text) {
+          setEnableTextSettings(true);
+          setshowShapeSetting(false);
+        }
+    });
+    canvasEditor.on("selection:cleared", function () {
       setshowShapeSetting(false);
+      setEnableTextSettings(false);
     });
   }
   return (
-    <div className={`${showShapeSetting ? "" : "hidden"} p-3 bg-white`}>
+    <div className={`${showShapeSetting || enableTextSettings ? "" : "hidden"} p-3 bg-white`}>
       {showShapeSetting && <ShapesSetting />}
+      {enableTextSettings && <TextSettingsNavbar />}
     </div>
   );
 }

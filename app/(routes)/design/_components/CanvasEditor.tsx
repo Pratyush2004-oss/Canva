@@ -38,7 +38,7 @@ const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
   // Used to delete the selected element/Oject
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Delete" || e.key === "Backspace") {
+      if (e.key === "Delete") {
         if (canvasEditor) {
           const activeObject = canvasEditor.getActiveObject();
           if (activeObject) {

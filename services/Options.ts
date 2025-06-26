@@ -2,6 +2,7 @@ import {
   ArrowDown,
   ArrowUp,
   Blend,
+  BookType,
   Component,
   Folder,
   Home,
@@ -29,6 +30,9 @@ import BorderWidth from "./Sharable/BorderWidth";
 import Opacity from "./Sharable/Opacity";
 import BorderRadius from "./Sharable/BorderRadius";
 import AITransformSetting from "./Components/AITransformSetting";
+import FontFamily from "./Sharable/FontFamily";
+import MoveForward from "./Sharable/MoveForward";
+import MoveBackward from "./Sharable/MoveBackward";
 
 export const WorkspaceMenu = [
   {
@@ -175,111 +179,171 @@ export const sideBarMenu = [
 
 export const ShapeList = [
   {
-    name: 'Circle',
-    icon: '/moon.png'
+    name: "Circle",
+    icon: "/moon.png",
   },
   {
-    name: 'Square',
-    icon: '/square.png'
+    name: "Square",
+    icon: "/square.png",
   },
   {
     name: "Triangle",
-    icon: '/triangle.png'
+    icon: "/triangle.png",
   },
   {
     name: "Line",
-    icon: '/line.png'
-  }
+    icon: "/line.png",
+  },
 ];
 
 export const shapesSettingsList = [
-    {
-        name: 'Fill',
-        icon: Palette,
-        component: FillColor
-    },
-    {
-        name: 'Stroke Color',
-        icon: Square,
-        component: BorderColor
-    },
-    {
-        name: 'Stroke Width',
-        icon: Minus,
-        component: BorderWidth
-    },
-    {
-        name: 'Opacity',
-        icon: Blend,
-        component: Opacity
-    },
-    {
-        name: 'Rounded Corner',
-        icon: SquareRoundCorner,
-        component: BorderRadius
-    },
-    {
-        name: 'Bring Front',
-        icon: ArrowUp,
-        // component: <MoveForward />
-    },
-    {
-        name: 'Move Back',
-        icon: ArrowDown,
-        // component: <MoveBackword />
-    },
-]
+  {
+    name: "Fill",
+    icon: Palette,
+    component: FillColor,
+  },
+  {
+    name: "Stroke Color",
+    icon: Square,
+    component: BorderColor,
+  },
+  {
+    name: "Stroke Width",
+    icon: Minus,
+    component: BorderWidth,
+  },
+  {
+    name: "Opacity",
+    icon: Blend,
+    component: Opacity,
+  },
+  {
+    name: "Rounded Corner",
+    icon: SquareRoundCorner,
+    component: BorderRadius,
+  },
+  {
+    name: "Bring Front",
+    icon: ArrowUp,
+    // component: <MoveForward />
+  },
+  {
+    name: "Move Back",
+    icon: ArrowDown,
+    // component: <MoveBackword />
+  },
+];
 
 export const AITransformationSettings = [
-    {
-        name: 'Background Remove',
-        command: 'e-bgremove',
-        image: '/remove-bg.jpg'
-    },
-    {
-        name: 'Change Background',
-        command: 'e-changebg-prompt-snow',
-        image: '/change-bg.jpg',
-        input: true
-    },
-    {
-        name: 'Generative fill',
-        command: 'bg-genfill,w-1000,h-960,cm-pad_resize',
-        image: '/generative-fill.png'
-    },
-    {
-        name: 'AI drop shadow',
-        command: 'e-dropshadow',
-        image: '/shadow.jpeg'
-    },
-    {
-        name: 'Upscale',
-        command: 'e-upscale',
-        image: '/upscale.png'
-    },
-    {
-        name: 'Smart crop',
-        command: 'fo-auto',
-        image: '/smartcrop.png'
-    },
-    {
-        name: 'Contrast',
-        command: 'e-contrast',
-        image: '/e-contrast.png'
-    },
-    {
-        name: 'Grayscale',
-        command: 'e-grayscale',
-        image: '/grayscale.png'
-    },
-    {
-        name: 'Blur',
-        command: 'bl-10',
-        image: '/e-blur.png'
-    },
-    {
-        name: 'Flip',
-        command: 'e-flip',
-        image: '/e-flip.png'
-    }
+  {
+    name: "Background Remove",
+    command: "e-bgremove",
+    image: "/remove-bg.jpg",
+  },
+  {
+    name: "Change Background",
+    command: "e-changebg-prompt-snow",
+    image: "/change-bg.jpg",
+    input: true,
+  },
+  {
+    name: "Generative fill",
+    command: "bg-genfill,w-1000,h-960,cm-pad_resize",
+    image: "/generative-fill.png",
+  },
+  {
+    name: "AI drop shadow",
+    command: "e-dropshadow",
+    image: "/shadow.jpeg",
+  },
+  {
+    name: "Upscale",
+    command: "e-upscale",
+    image: "/upscale.png",
+  },
+  {
+    name: "Smart crop",
+    command: "fo-auto",
+    image: "/smartcrop.png",
+  },
+  {
+    name: "Contrast",
+    command: "e-contrast",
+    image: "/e-contrast.png",
+  },
+  {
+    name: "Grayscale",
+    command: "e-grayscale",
+    image: "/grayscale.png",
+  },
+  {
+    name: "Blur",
+    command: "bl-10",
+    image: "/e-blur.png",
+  },
+  {
+    name: "Flip",
+    command: "e-flip",
+    image: "/e-flip.png",
+  },
+];
+
+export const TextSettingsList = [
+  {
+    name: "Fill",
+    icon: Palette,
+    component: FillColor,
+  },
+  {
+    name: "Stroke Color",
+    icon: Square,
+    component: BorderColor,
+  },
+  {
+    name: "Stroke Width",
+    icon: Minus,
+    component: BorderWidth,
+  },
+  {
+    name: "Opacity",
+    icon: Blend,
+    component: Opacity,
+  },
+  {
+    name: "Font",
+    icon: BookType,
+    component: FontFamily,
+  },
+  {
+    name: "Bring Front",
+    icon: ArrowUp,
+    component: MoveForward,
+  },
+  {
+    name: "Move Back",
+    icon: ArrowDown,
+    component: MoveBackward,
+  },
+];
+
+
+export const FontFamilyList = [
+    "Arial",
+    "Arial Black",
+    "Verdana",
+    "Helvetica",
+    "Tahoma",
+    "Trebuchet MS",
+    "Times New Roman",
+    "Georgia",
+    "Garamond",
+    "Courier New",
+    "Brush Script MT",
+    "Palatino",
+    "Bookman",
+    "Comic Sans MS",
+    "Impact",
+    "Lucida Sans Unicode",
+    "Geneva",
+    "Lucida Console",
 ]
