@@ -15,3 +15,10 @@ export interface DesignSidebarType {
   >;
   component?: any;
 }
+
+export type AITransformationSettingType = {
+  name: string;
+  image: string;
+  command: string;
+  input?: boolean;
+}

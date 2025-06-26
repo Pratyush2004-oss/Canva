@@ -55,7 +55,7 @@ const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
   }, [canvasEditor]);
   return (
     DesignInfo && (
-      <div className="bg-secondary h-screen w-full">
+      <div className="bg-secondary h-[calc(100vh-70px)] w-full overflow-auto">
         <TopNavBar />
         <div className="mt-10 flex items-center flex-col justify-center my-auto">
           <canvas id="canvas" ref={canvasRef} />

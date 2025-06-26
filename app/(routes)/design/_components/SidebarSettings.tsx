@@ -8,7 +8,7 @@ const SidebarSettings = ({
 }) => {
   return (
     selectedOption && (
-      <div className="w-[280px] p-5 h-screen border-r">
+      <div className="w-[250px] md:w-[280px] p-5 overflow-auto max-h-[calc(100vh-70px)] border-r">
         <h1 className="font-bold">{selectedOption.name}</h1>
         <p className="text-sm text-gray-500 mt-1">{selectedOption.desc}</p>
         <div className="mt-7 ">

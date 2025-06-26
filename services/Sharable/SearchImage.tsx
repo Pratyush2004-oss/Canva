@@ -54,7 +54,7 @@ function SearchImage() {
         <Input placeholder="Enter Image" onChange={(e) => setimageInput(e.target.value)} className="pr-12" />
       </div>
       {imageList.length > 0 && (
-        <div className="mt-5 grid grid-cols-2 gap-2 h-[75vh] overflow-auto">
+        <div className="mt-5 grid grid-cols-2 gap-2 h-[75vh] overflow-auto pb-5">
           {imageList.map((image: ImageListType, index: number) => (
             <div key={index} className="" onClick={() => addImageToCanvas(image.urls.small)}>
               <Image

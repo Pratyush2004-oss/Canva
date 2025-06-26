@@ -22,7 +22,7 @@ function TopNavBar() {
     });
   }
   return (
-    <div className="p-3 bg-white">
+    <div className={`${showShapeSetting ? "" : "hidden"} p-3 bg-white`}>
       {showShapeSetting && <ShapesSetting />}
     </div>
   );
