@@ -23,18 +23,18 @@ export const CreateNewDesign = mutation({
 
 // getting the design data from the convex by design id
 export const GetDesign = query({
-  args:{
-    id: v.id("designs")
+  args: {
+    id: v.id("designs"),
   },
   handler: async (ctx, args) => {
     const result = await ctx.db.get(args.id);
     return result;
-  }
-})
+  },
+});
 
 // saving the design data to the convex
 export const SaveDesign = mutation({
-  args : {
+  args: {
     id: v.id("designs"),
     jsonDesign: v.any(),
     imageUrl: v.optional(v.string()),
@@ -43,7 +43,20 @@ export const SaveDesign = mutation({
     const result = await ctx.db.patch(args.id, {
       jsonTemplate: args.jsonDesign,
       imagePreview: args.imageUrl || "",
-    })
+    });
     return result;
-  }
-})
+  },
+});
+
+export const GetDesignsByUser = query({
+  args: {
+    id: v.id("users"),
+  },
+  handler: async (ctx, args) => {
+    const designs = await ctx.db
+      .query("designs")
+      .filter((q) => q.eq(q.field("uid"), args.id))
+      .collect();
+    return designs;
+  },
+});
