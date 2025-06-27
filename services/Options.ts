@@ -22,7 +22,6 @@ import {
 import BackgroundSetting from "./Components/BackgroundSetting";
 import TextSetting from "./Components/TextSetting";
 import AddImageSetting from "./Components/AddImageSetting";
-import TemplateList from "./Components/TemplateList";
 import Elements from "./Components/Elements";
 import FillColor from "./Sharable/FillColor";
 import BorderColor from "./Sharable/BorderColor";
@@ -33,6 +32,7 @@ import AITransformSetting from "./Components/AITransformSetting";
 import FontFamily from "./Sharable/FontFamily";
 import MoveForward from "./Sharable/MoveForward";
 import MoveBackward from "./Sharable/MoveBackward";
+import TemplatesList from "./Components/TemplatesList";
 
 export const WorkspaceMenu = [
   {
@@ -137,7 +137,7 @@ export const sideBarMenu = [
     name: "Templates",
     desc: "Select Prebuild Template",
     icon: LayoutTemplate,
-    component: TemplateList,
+    component: TemplatesList,
   },
   {
     name: "Elements",
