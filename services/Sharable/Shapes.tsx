@@ -3,6 +3,7 @@ import { ShapeList } from "../Options";
 import Image from "next/image";
 import { Circle, Line, Rect, Triangle } from "fabric";
 import { useCanvasHook } from "@/app/(routes)/design/[designId]/page";
+import Stickers from "./Stickers";
 
 type ShapeType = {
   name: string;
@@ -65,6 +66,8 @@ function Shapes() {
           </div>
         ))}
       </div>
+      {/* Stickers */}
+      <Stickers />
     </div>
   );
 }

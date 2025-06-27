@@ -1,5 +1,4 @@
 import { useCanvasHook } from "@/app/(routes)/design/[designId]/page";
-import { Button } from "@/components/ui/button";
 import { FabricImage } from "fabric";
 import ImageKit from "imagekit";
 import { Loader } from "lucide-react";
@@ -27,7 +26,9 @@ function UploadImage() {
         fileName: designId + ".png",
         isPublished: true,
       });
-      const canvasImageRef = await FabricImage.fromURL(imageRef.url);
+      const canvasImageRef = await FabricImage.fromURL(imageRef.url, {
+        crossOrigin: "anonymous",
+      });
       setloading(false);
       canvasEditor?.add(canvasImageRef);
       canvasEditor.renderAll();

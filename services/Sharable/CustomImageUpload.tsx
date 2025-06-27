@@ -43,7 +43,9 @@ function CustomImageUpload({
 
   //   adding image to the canvas
   const addToCanvas = async () => {
-    const canvasImageRef = await FabricImage.fromURL(image);
+    const canvasImageRef = await FabricImage.fromURL(image, {
+      crossOrigin: "anonymous",
+    });
     canvasEditor?.add(canvasImageRef);
     setImage("");
   };

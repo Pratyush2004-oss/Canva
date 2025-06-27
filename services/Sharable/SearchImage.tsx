@@ -37,7 +37,9 @@ function SearchImage() {
   };
 
   const addImageToCanvas = async (image: string) => {
-    const canvasImageRef = await FabricImage.fromURL(image);
+    const canvasImageRef = await FabricImage.fromURL(image,{
+      crossOrigin: "anonymous",
+    });
     canvasEditor?.add(canvasImageRef);
     canvasEditor.renderAll();
 

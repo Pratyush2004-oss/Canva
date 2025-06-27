@@ -31,3 +31,19 @@ export const GetDesign = query({
     return result;
   }
 })
+
+// saving the design data to the convex
+export const SaveDesign = mutation({
+  args : {
+    id: v.id("designs"),
+    jsonDesign: v.any(),
+    imageUrl: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const result = await ctx.db.patch(args.id, {
+      jsonTemplate: args.jsonDesign,
+      imagePreview: args.imageUrl || "",
+    })
+    return result;
+  }
+})

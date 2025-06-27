@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useCanvasHook } from "../[designId]/page";
 
 const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [canvas, setcanvas] = useState<Canvas | null>(null);
   const { canvasEditor, setcanvasEditor } = useCanvasHook();
 
@@ -25,6 +25,11 @@ const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
         height: DesignInfo?.height * scaleFactor,
         zoom: 1 / scaleFactor,
       });
+      if (DesignInfo?.jsonTemplate) {
+        initCanvas.loadFromJSON(DesignInfo?.jsonTemplate, () => {
+          initCanvas?.requestRenderAll();
+        });
+      }
       initCanvas.renderAll();
       setcanvas(initCanvas);
       setcanvasEditor(initCanvas);
@@ -33,7 +38,7 @@ const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
         initCanvas.dispose();
       };
     }
-  }, [DesignInfo]);
+  }, [DesignInfo, canvasRef, setcanvasEditor]);
 
   // Used to delete the selected element/Oject
   useEffect(() => {

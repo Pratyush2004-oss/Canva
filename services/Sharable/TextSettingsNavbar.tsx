@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/popover";
 import { Trash } from "lucide-react";
 import { useCanvasHook } from "@/app/(routes)/design/[designId]/page";
+import FontStyle from "./FontStyle";
 function TextSettingsNavbar() {
   const {canvasEditor} = useCanvasHook();
   const onDeleteShape = () => {
@@ -36,6 +37,7 @@ function TextSettingsNavbar() {
           </Popover>
         </div>
       ))}
+      <FontStyle />
       <div className="p-1 hover:bg-gray-100 cursor-pointer hover:scale-105 transition-all duration-200 rounded-md" onClick={onDeleteShape}>
         <Trash strokeWidth={2.5} className="size-6 text-black font-extrabold" />
       </div>
