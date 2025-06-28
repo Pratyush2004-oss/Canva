@@ -20,7 +20,6 @@ const RecentDesign = () => {
     const designs = await convex.query(api.designs.GetDesignsByUser, {
       id: userDetail?._id as Id<"users">,
     });
-    console.log(designs);
     setdesignList(designs);
   };
 

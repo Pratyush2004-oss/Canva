@@ -14,7 +14,7 @@ function DesignList({ designList }: { designList: Doc<"designs">[] }) {
             alt={design.name}
             width={200}
             height={200}
-            className="w-full h-[200px] object-contain bg-secondary rounded-xl cursor-pointer"
+            className="w-full h-auto object-contain bg-secondary rounded-xl cursor-pointer"
           />
         </div>
       ))}

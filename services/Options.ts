@@ -38,7 +38,7 @@ export const WorkspaceMenu = [
   {
     name: "Home",
     icon: Home,
-    path: "/",
+    path: "/workspace",
   },
   {
     name: "Projects",

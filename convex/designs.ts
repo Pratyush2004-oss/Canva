@@ -48,6 +48,7 @@ export const SaveDesign = mutation({
   },
 });
 
+// getting the design data from the convex by user id
 export const GetDesignsByUser = query({
   args: {
     id: v.id("users"),
@@ -58,5 +59,42 @@ export const GetDesignsByUser = query({
       .filter((q) => q.eq(q.field("uid"), args.id))
       .collect();
     return designs;
+  },
+});
+
+export const GetDesignsByUserForTemplate = query({
+  args: {
+    id: v.id("users"),
+  },
+  handler: async (ctx, args) => {
+    const designs = await ctx.db
+      .query("designs")
+      .filter((q) => q.eq(q.field("uid"), args.id))
+      .filter((q) => q.neq(q.field("imagePreview"), undefined))
+      .collect();
+    return designs;
+  },
+});
+
+// getting design by selecting template
+export const CrateDesignFromTemplate = mutation({
+  args: {
+    name: v.string(),
+    imagePreview: v.optional(v.string()),
+    JSONTemplate: v.any(),
+    uid: v.id("users"),
+    height: v.number(),
+    width: v.number(),
+  },
+  handler: async (ctx, args) => {
+    const result = await ctx.db.insert("designs", {
+      name: args.name,
+      uid: args.uid,
+      height: args.height,
+      width: args.width,
+      imagePreview: args.imagePreview,
+      jsonTemplate: args.JSONTemplate,
+    });
+    return result;
   },
 });

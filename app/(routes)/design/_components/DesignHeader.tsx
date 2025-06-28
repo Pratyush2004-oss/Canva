@@ -89,7 +89,7 @@ const DesignHeader = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
           <Button
             onClick={onSave}
             disabled={!canvasEditor}
-            className="text-white bg-gradient-to-tl cursor-pointer from-sky-500 via-blue-400 to-purple-600"
+            className="text-white cursor-pointer bg-gradient-to-tl  from-sky-500 via-blue-400 to-purple-600"
             variant={"outline"}
           >
             {" "}
