@@ -11,6 +11,7 @@ import { api } from "@/convex/_generated/api";
 import { useParams } from "next/navigation";
 import { toast } from "sonner";
 import ImageKit from "imagekit";
+import Link from "next/link";
 
 const DesignHeader = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
   const { canvasEditor } = useCanvasHook();
@@ -33,11 +34,11 @@ const DesignHeader = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
 
       // get list of all the files
       const existingFiles = await imagekit.listFiles({
-        searchQuery:`name=${designId}.png`,
-      })
+        searchQuery: `name=${designId}.png`,
+      });
 
       // delete old files of exist
-      if( existingFiles && existingFiles.length > 0) {
+      if (existingFiles && existingFiles.length > 0) {
         await Promise.all(
           existingFiles.map(async (file) => {
             // Only delete if it's a FileObject (has fileId)
@@ -79,7 +80,9 @@ const DesignHeader = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
   return (
     DesignInfo && (
       <div className="p-3 flex items-center justify-between px-5 gap-10 bg-gradient-to-r from-sky-500 via-blue-400 to-purple-600">
-        <Image src={"/logo-white.png"} alt="" width={100} height={60} />
+        <Link href={"/workspace"}>
+          <Image src={"/logo-white.png"} alt="" width={100} height={60} />
+        </Link>
         <Input
           defaultValue={DesignInfo?.name}
           placeholder="Design Name"

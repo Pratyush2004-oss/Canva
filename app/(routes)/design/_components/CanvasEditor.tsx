@@ -7,66 +7,75 @@ import { useCanvasHook } from "../[designId]/page";
 
 const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [canvas, setcanvas] = useState<Canvas | null>(null);
-  const { canvasEditor, setcanvasEditor } = useCanvasHook();
+  const [canvas, setCanvas] = useState<Canvas | null>(null);
+  const { setcanvasEditor } = useCanvasHook();
+  
 
   useEffect(() => {
-    if (canvasRef.current && DesignInfo) {
-      const initCanvas = new Canvas(canvasRef.current, {
-        width: DesignInfo?.width,
-        height: DesignInfo?.height,
-        backgroundColor: "#fff",
-        preserveObjectStacking: true,
-      });
-      //   set high resolution canvas
-      const scaleFactor = window.devicePixelRatio || 1;
-      initCanvas.set({
-        width: DesignInfo?.width * scaleFactor,
-        height: DesignInfo?.height * scaleFactor,
-        zoom: 1 / scaleFactor,
-      });
+    if (!canvasRef.current || !DesignInfo) return;
+
+    const initCanvas = new Canvas(canvasRef.current, {
+      width: DesignInfo.width,
+      height: DesignInfo.height,
+      backgroundColor: "#fff",
+      preserveObjectStacking: true,
+      enableRetinaScaling: true, // Let Fabric handle high DPI
+    });
+
+    // Handle JSON loading
+    const loadDesign = async () => {
       if (DesignInfo?.jsonTemplate) {
-        initCanvas?.loadFromJSON(DesignInfo?.jsonTemplate, () => {
-          initCanvas?.requestRenderAll();
+        initCanvas.loadFromJSON(DesignInfo.jsonTemplate, () => {
+            initCanvas.requestRenderAll();
         });
       }
-      initCanvas.renderAll();
-      setcanvas(initCanvas);
-      setcanvasEditor(initCanvas);
+    };
 
-      return () => {
-        initCanvas.dispose();
-      };
-    }
-  }, [DesignInfo, canvasRef, setcanvasEditor]);
+    loadDesign();
+    initCanvas.renderAll();
+    setCanvas(initCanvas);
+    setcanvasEditor(initCanvas);
 
-  // Used to delete the selected element/Oject
+    // Cleanup function
+    return () => {
+      initCanvas.dispose();
+      setCanvas(null);
+      setcanvasEditor(null); // Clear context reference
+    };
+  }, [DesignInfo, setcanvasEditor]);
+
+  // Keyboard handler with safety checks
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Delete") {
-        if (canvasEditor) {
-          const activeObject = canvasEditor.getActiveObject();
-          if (activeObject) {
-            canvasEditor.remove(activeObject);
-            canvasEditor.renderAll();
-          }
+      if (e.key !== "Delete" || !canvas) return;
+      
+      try {
+        const activeObject = canvas.getActiveObject();
+        if (activeObject) {
+          canvas.remove(activeObject);
+          canvas.renderAll();
         }
+      } catch (error) {
+        console.error("Canvas operation error:", error);
       }
     };
+
     document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [canvasEditor]);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [canvas]); // Only depend on local canvas state
+
   return (
-    DesignInfo && (
-      <div className="bg-secondary h-[calc(100vh-70px)] w-full overflow-auto">
-        <TopNavBar />
-        <div className="mt-10 flex items-center flex-col justify-center my-auto max-h-[calc(100vh-70px)] w-full overflow-auto">
-          <canvas id="canvas" ref={canvasRef} />
-        </div>
+    <div className="bg-secondary h-[calc(100vh-70px)] w-full overflow-auto">
+      <TopNavBar />
+      <div className="mt-10 flex items-center flex-col justify-center my-auto max-h-[calc(100vh-70px)] w-full overflow-auto">
+        <canvas 
+          id="canvas" 
+          ref={canvasRef}
+          width={DesignInfo?.width || 800}
+          height={DesignInfo?.height || 600}
+        />
       </div>
-    )
+    </div>
   );
 };
 
