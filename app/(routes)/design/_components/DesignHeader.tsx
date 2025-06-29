@@ -5,7 +5,7 @@ import { UserButton } from "@stackframe/stack";
 import { Download, Save } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { useCanvasHook } from "../[designId]/page";
+import { useCanvasHook } from "../_components/useCanvasHook";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useParams } from "next/navigation";

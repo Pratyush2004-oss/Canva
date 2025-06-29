@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ColorPicker from "../Sharable/ColorPicker";
-import { useCanvasHook } from "@/app/(routes)/design/[designId]/page";
+import { useCanvasHook } from "@/app/(routes)/design/_components/useCanvasHook";
 
 function BackgroundSetting() {
   const [bgColor, setbgColor] = useState<string>("fff");

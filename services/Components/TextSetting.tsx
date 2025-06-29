@@ -1,4 +1,4 @@
-import { useCanvasHook } from '@/app/(routes)/design/[designId]/page';
+import { useCanvasHook } from '@/app/(routes)/design/_components/useCanvasHook';
 import { IText } from 'fabric';
 import React from 'react'
 

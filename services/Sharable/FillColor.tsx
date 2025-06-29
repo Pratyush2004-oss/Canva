@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ColorPicker from './ColorPicker'
-import { useCanvasHook } from '@/app/(routes)/design/[designId]/page';
+import { useCanvasHook } from '@/app/(routes)/design/_components/useCanvasHook';
 
 function FillColor() {
     const [color, setcolor] = useState('#000');

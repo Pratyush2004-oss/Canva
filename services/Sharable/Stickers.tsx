@@ -1,6 +1,6 @@
 import React from "react";
 import { StickerList } from "../Options";
-import { useCanvasHook } from "@/app/(routes)/design/[designId]/page";
+import { useCanvasHook } from "@/app/(routes)/design/_components/useCanvasHook";
 import Image from "next/image";
 import { FabricImage } from "fabric";
 

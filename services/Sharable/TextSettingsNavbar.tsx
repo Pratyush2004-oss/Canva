@@ -6,19 +6,19 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { ArrowDown, ArrowUp, Trash } from "lucide-react";
-import { useCanvasHook } from "@/app/(routes)/design/[designId]/page";
+import { useCanvasHook } from "@/app/(routes)/design/_components/useCanvasHook";
 import FontStyle from "./FontStyle";
 function TextSettingsNavbar() {
-  const {canvasEditor} = useCanvasHook();
+  const { canvasEditor } = useCanvasHook();
   const onDeleteShape = () => {
     const activeObject = canvasEditor?.getActiveObject();
     if (activeObject) {
       canvasEditor.remove(activeObject);
       canvasEditor.renderAll();
     }
-  }
+  };
 
-   // moving the object to forward 
+  // moving the object to forward
   const onMoveForward = () => {
     const activeObject = canvasEditor?.getActiveObject();
     if (activeObject) {
@@ -29,7 +29,7 @@ function TextSettingsNavbar() {
         canvasEditor.renderAll();
       }
     }
-  }
+  };
 
   // moving the object to backward
   const onMoveBackward = () => {
@@ -42,7 +42,7 @@ function TextSettingsNavbar() {
         canvasEditor.renderAll();
       }
     }
-  }
+  };
   return (
     <div className="flex gap-6 w-[calc(100vh - 70px)] overflow-auto">
       {TextSettingsList.map((shape, index) => (
@@ -83,7 +83,10 @@ function TextSettingsNavbar() {
       </div>
       <FontStyle />
 
-      <div className="p-1 hover:bg-gray-100 cursor-pointer hover:scale-105 transition-all duration-200 rounded-md" onClick={onDeleteShape}>
+      <div
+        className="p-1 hover:bg-gray-100 cursor-pointer hover:scale-105 transition-all duration-200 rounded-md"
+        onClick={onDeleteShape}
+      >
         <Trash strokeWidth={2.5} className="size-6 text-black font-extrabold" />
       </div>
     </div>

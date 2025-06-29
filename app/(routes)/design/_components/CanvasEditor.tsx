@@ -3,7 +3,7 @@ import { Doc } from "@/convex/_generated/dataModel";
 import TopNavBar from "@/services/Components/TopNavBar";
 import { Canvas } from "fabric";
 import { useEffect, useRef, useState } from "react";
-import { useCanvasHook } from "../[designId]/page";
+import { useCanvasHook } from "../_components/useCanvasHook";
 
 const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);

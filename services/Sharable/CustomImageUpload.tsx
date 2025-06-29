@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import ImageKit from "imagekit";
 import { FabricImage } from "fabric";
-import { useCanvasHook } from "@/app/(routes)/design/[designId]/page";
+import { useCanvasHook } from "@/app/(routes)/design/_components/useCanvasHook";
 import { useParams } from "next/navigation";
 import { AITransformationSettingType } from "@/types/types";
 function CustomImageUpload({

@@ -1,4 +1,4 @@
-import { useCanvasHook } from "@/app/(routes)/design/[designId]/page";
+import { useCanvasHook } from "@/app/(routes)/design/_components/useCanvasHook";
 import { FabricImage } from "fabric";
 import ImageKit from "imagekit";
 import { Loader } from "lucide-react";

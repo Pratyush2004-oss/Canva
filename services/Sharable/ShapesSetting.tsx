@@ -1,4 +1,4 @@
-import { useCanvasHook } from "@/app/(routes)/design/[designId]/page";
+import { useCanvasHook } from "@/app/(routes)/design/_components/useCanvasHook";
 import {
   Popover,
   PopoverContent,
@@ -16,7 +16,7 @@ function ShapesSetting() {
     }
   };
 
-  // moving the object to forward 
+  // moving the object to forward
   const onMoveForward = () => {
     const activeObject = canvasEditor?.getActiveObject();
     if (activeObject) {
@@ -27,7 +27,7 @@ function ShapesSetting() {
         canvasEditor.renderAll();
       }
     }
-  }
+  };
 
   // moving the object to backward
   const onMoveBackward = () => {
@@ -40,7 +40,7 @@ function ShapesSetting() {
         canvasEditor.renderAll();
       }
     }
-  }
+  };
 
   return (
     <div className="flex gap-6 w-[calc(100vh - 70px)] overflow-auto">
