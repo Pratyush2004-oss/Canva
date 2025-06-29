@@ -87,6 +87,16 @@ export const CrateDesignFromTemplate = mutation({
     width: v.number(),
   },
   handler: async (ctx, args) => {
+    // check if the design is already there in the table
+    const existingDesign = await ctx.db
+    .query("designs")
+    .filter((q => q.eq(q.field("uid"), args.uid)))
+    .filter((q => q.eq(q.field("name"), args.name)))
+    .collect();
+    if (existingDesign?.length > 0) {
+      return existingDesign[0]._id;
+    }
+
     const result = await ctx.db.insert("designs", {
       name: args.name,
       uid: args.uid,

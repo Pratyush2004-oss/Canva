@@ -1,6 +1,4 @@
 import {
-  ArrowDown,
-  ArrowUp,
   Blend,
   BookType,
   Component,
@@ -17,22 +15,21 @@ import {
   Square,
   SquareRoundCorner,
   Type,
-  WalletCardsIcon,
+  WalletCardsIcon
 } from "lucide-react";
-import BackgroundSetting from "./Components/BackgroundSetting";
-import TextSetting from "./Components/TextSetting";
 import AddImageSetting from "./Components/AddImageSetting";
-import Elements from "./Components/Elements";
-import FillColor from "./Sharable/FillColor";
-import BorderColor from "./Sharable/BorderColor";
-import BorderWidth from "./Sharable/BorderWidth";
-import Opacity from "./Sharable/Opacity";
-import BorderRadius from "./Sharable/BorderRadius";
 import AITransformSetting from "./Components/AITransformSetting";
-import FontFamily from "./Sharable/FontFamily";
-import MoveForward from "./Sharable/MoveForward";
-import MoveBackward from "./Sharable/MoveBackward";
+import BackgroundSetting from "./Components/BackgroundSetting";
+import Elements from "./Components/Elements";
+import SettingsComponent from "./Components/Settings";
 import TemplatesList from "./Components/TemplatesList";
+import TextSetting from "./Components/TextSetting";
+import BorderColor from "./Sharable/BorderColor";
+import BorderRadius from "./Sharable/BorderRadius";
+import BorderWidth from "./Sharable/BorderWidth";
+import FillColor from "./Sharable/FillColor";
+import FontFamily from "./Sharable/FontFamily";
+import Opacity from "./Sharable/Opacity";
 
 export const WorkspaceMenu = [
   {
@@ -173,7 +170,7 @@ export const sideBarMenu = [
     name: "Settings",
     desc: "Update Canvas Size and background",
     icon: Settings,
-    component: null,
+    component: SettingsComponent,
   },
 ];
 
@@ -221,17 +218,7 @@ export const shapesSettingsList = [
     name: "Rounded Corner",
     icon: SquareRoundCorner,
     component: BorderRadius,
-  },
-  {
-    name: "Bring Front",
-    icon: ArrowUp,
-    // component: <MoveForward />
-  },
-  {
-    name: "Move Back",
-    icon: ArrowDown,
-    // component: <MoveBackword />
-  },
+  }
 ];
 
 export const AITransformationSettings = [
@@ -313,17 +300,7 @@ export const TextSettingsList = [
     name: "Font",
     icon: BookType,
     component: FontFamily,
-  },
-  {
-    name: "Bring Front",
-    icon: ArrowUp,
-    component: MoveForward,
-  },
-  {
-    name: "Move Back",
-    icon: ArrowDown,
-    component: MoveBackward,
-  },
+  }
 ];
 
 

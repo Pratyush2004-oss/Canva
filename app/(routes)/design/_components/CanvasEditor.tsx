@@ -13,8 +13,8 @@ const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
   useEffect(() => {
     if (canvasRef.current && DesignInfo) {
       const initCanvas = new Canvas(canvasRef.current, {
-        width: DesignInfo?.width / 1.5,
-        height: DesignInfo?.height / 1.5,
+        width: DesignInfo?.width,
+        height: DesignInfo?.height,
         backgroundColor: "#fff",
         preserveObjectStacking: true,
       });
@@ -26,7 +26,7 @@ const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
         zoom: 1 / scaleFactor,
       });
       if (DesignInfo?.jsonTemplate) {
-        initCanvas.loadFromJSON(DesignInfo?.jsonTemplate, () => {
+        initCanvas?.loadFromJSON(DesignInfo?.jsonTemplate, () => {
           initCanvas?.requestRenderAll();
         });
       }
@@ -62,7 +62,7 @@ const CanvasEditor = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
     DesignInfo && (
       <div className="bg-secondary h-[calc(100vh-70px)] w-full overflow-auto">
         <TopNavBar />
-        <div className="mt-10 flex items-center flex-col justify-center my-auto">
+        <div className="mt-10 flex items-center flex-col justify-center my-auto max-h-[calc(100vh-70px)] w-full overflow-auto">
           <canvas id="canvas" ref={canvasRef} />
         </div>
       </div>

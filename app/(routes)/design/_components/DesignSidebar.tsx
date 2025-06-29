@@ -14,7 +14,7 @@ const DesignSidebar = () => {
   };
   return (
     <div className="flex">
-      <div className="p-2 w-[90px] border-r shadow-sm max-h-[calc(100vh-70px)] pt-2">
+      <div className="p-1 w-[90px] border-r shadow-sm max-h-[calc(100vh-70px)] pt-2">
         {sideBarMenu.map((menu, idx) => (
           <div
             key={idx}

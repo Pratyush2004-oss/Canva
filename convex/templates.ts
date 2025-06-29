@@ -18,6 +18,15 @@ export const SaveTemplate = mutation({
     height: v.number(),
   },
   handler: async (ctx, args) => {
+    // check if the template is already there in the table
+    const existingTemplate = await ctx.db
+      .query("templates")
+      .filter((q) => q.eq(q.field("imagePreview"), args.ImagePreview))
+      .collect();
+    if (existingTemplate && existingTemplate.length > 0) {
+      return existingTemplate[0]._id;
+    }
+
     const result = await ctx.db.insert("templates", {
       name: args.name,
       width: args.width,

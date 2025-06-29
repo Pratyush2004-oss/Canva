@@ -56,7 +56,7 @@ const DesignHeader = ({ DesignInfo }: { DesignInfo: Doc<"designs"> }) => {
       });
 
       const JSONDesign = canvasEditor.toJSON();
-      const result = await SaveDesign({
+      await SaveDesign({
         id: designId as Id<"designs">,
         jsonDesign: JSONDesign,
         imageUrl: imageRef.url,

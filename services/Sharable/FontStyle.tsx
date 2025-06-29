@@ -27,7 +27,7 @@ function FontStyle() {
     canvasEditor.add(activeObject);
   };
   return (
-    <div>
+    <div className="flex">
       <Toggle
         defaultPressed={activeObject?.fontWeight === "bold"}
         onClick={() => onSetFontStyle("bold")}

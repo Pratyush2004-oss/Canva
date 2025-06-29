@@ -31,7 +31,7 @@ function TemplatesList() {
                 alt={template.name}
                 width={500}
                 height={500}
-                className="w-full h-[150px] rounded-lg object-contain mb-4 cursor-pointer hover:scale-105 transition-transform duration-200 bg-secondary"
+                className="w-full border-2 rounded-lg object-contain mb-4 cursor-pointer hover:scale-105 transition-transform duration-200 bg-secondary"
               />
             </div>
           ))}
